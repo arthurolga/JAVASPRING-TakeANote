@@ -1,0 +1,34 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.h5{
+	color:red;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+.collection{
+  border: 0;
+}
+.collection .collection-item {
+  background-color:#fafafa;
+  color:#29b6f6;
+}
+.card{
+	border-radius: 10px;
+}
+#tags{
+  font-size: 20px;
+}
+
+::placeholder{
+	color:black;
+}
