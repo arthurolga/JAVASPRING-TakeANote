@@ -222,13 +222,13 @@
 								</div>
 							</div>
 							
-							<% if (tag != null) {
+							<% if (tag != null && tag.length() >1) {
 				%>
 							<input type="hidden" id="tag" name="tag"
 								value="<%=nota.getTag() %>">
 							<div class="chip">
 								<%=tag %>
-								<a href="CloseTag?id=<%=nota.getId() %>"><i
+								<a href="closeTag?id=<%=nota.getId() %>"><i
 									class="close material-icons">close</i></a>
 							</div>
 							<%

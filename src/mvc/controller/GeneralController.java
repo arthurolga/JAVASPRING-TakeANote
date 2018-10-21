@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
+
 @Controller
 public class GeneralController {
 	@RequestMapping("index")
@@ -118,13 +119,15 @@ public class GeneralController {
 			try {
 				//if ((tag.getName() != null)&(!(dao.checkTag(tag))&&(tag.getName().length() > 0) )) {
 				if ((tag.getName() != null)) {
-					if(tag.getName().length() > 0) {
+					if(tag.getName().length() > 1) {
 						
 					
 					if(!(dao.checkTag(tag))){
 						System.out.println("Deu checkotag");
 						dao.adicionaTag(tag);
 					}
+					}else {
+						nota.setTag(null);
 					}
 				}
 			} catch (SQLException e1) {
@@ -165,6 +168,29 @@ public class GeneralController {
 			return "index";
 			
 	}
+	@RequestMapping("closeTag")
+	protected String closeTag (HttpServletRequest request,
+			 HttpServletResponse response) throws IOException, ServletException {
+		
+			int id =Integer.parseInt(request.getParameter("id"));
+			Notas nota = new Notas();
+			nota.setId(id);
+			nota.setTag(null);
+			
+			DAO dao = new DAO();
+			System.out.println("Conectou cm o DAO");
+			try {
+				System.out.println("Tentou rodar o remove");
+				dao.alteraTagNota(nota);
+			} catch (SQLException e) {
+				System.out.println("Nem tentou rodar o remove");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "index";
+			
+	}   
+
 
 	}
 	
