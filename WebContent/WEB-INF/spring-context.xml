@@ -10,7 +10,7 @@
  http://www.springframework.org/schema/context
  http://www.springframework.org/schema/context/spring-context.xsd">
  <context:component-scan base-package="mvc" />
- <mvc:annotation-driven />
+ <mvc:annotation-driven ignore-default-model-on-redirect="true" />
  <mvc:default-servlet-handler/>
  <bean
 class="org.springframework.web.servlet.view.InternalResourceViewResolver">

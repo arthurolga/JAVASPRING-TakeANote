@@ -1,14 +1,14 @@
 package mvc.model;
 
 public class Tags {
-	private Integer id;
+	private Integer tagId;
 	private String name;
 	private String user;
 	public Integer getId() {
-		return id;
+		return tagId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTagId(Integer tagId) {
+		this.tagId = tagId;
 	}
 	public String getName() {
 		return name;

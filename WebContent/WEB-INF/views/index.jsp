@@ -208,7 +208,7 @@
 							
 							
 								
-							<form action="editNota?id=<%=nota.getId() %>">
+							<form action="editaCard" method="post">
 							<input type="hidden" name="id" value="<%=nota.getId() %>">
 							<div style="height: 50px;">
 								<textarea class="materialize-textarea" name="titulo" placeholder="Adicionar título"
@@ -224,7 +224,7 @@
 							
 							<% if (tag != null) {
 				%>
-							<input type="hidden" id="tag<%=nota.getId() %>"
+							<input type="hidden" id="tag" name="tag"
 								value="<%=nota.getTag() %>">
 							<div class="chip">
 								<%=tag %>
@@ -244,10 +244,15 @@
 			}
 			 %>
 				<div class="row">
-					<input class="btn-flat" type="submit" value="Save"> <a
-						class="btn-flat btn-large right waves-effect"
-						href="DeleteNota?id=<%=nota.getId() %>"><i
-						class="large material-icons">close</i></a>
+
+					<input class="btn-flat" type="submit" value="Save"> 
+					</form>
+					
+					
+					<form action="removeCard" method="post"><input type="hidden" name="id" value="<%=nota.getId() %>"> <button type="submit"
+						class="btn-flat btn-large right waves-effect"><i
+						class="large material-icons">close</i></button>
+					</form>
 				</div>
 				<div class="row">
 				
@@ -265,7 +270,7 @@
 			</div>
 
 		</div>
-		</form>
+		
 
 
 

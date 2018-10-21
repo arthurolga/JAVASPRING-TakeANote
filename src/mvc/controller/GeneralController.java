@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
+
+
+
 @Controller
 public class GeneralController {
 	@RequestMapping("index")
@@ -47,6 +50,7 @@ public class GeneralController {
 					System.out.println(usuario);
 					if(dao.checkUser(usuario)) {
 						if(dao.login(usuario)) {
+							
 							return "index";
 						}
 						else {
@@ -89,7 +93,80 @@ public class GeneralController {
 			return "index";
 		}
 		
-	}}
+	}
+	@RequestMapping("editaCard")
+	protected String editaCard (Notas nota, Tags tag,HttpServletRequest request,
+			 HttpServletResponse response) throws IOException, ServletException {
+			
+
+			//Notas nota = new Notas();
+			//Tags tag = new Tags();
+			//int id =Integer.parseInt(request.getParameter("id"));
+			//nota.setId(id);
+			//nota.setTitulo(request.getParameter("titulo"));
+			//nota.setContent(request.getParameter("content"));
+			if (nota.getTag()!=null) {
+				if (nota.getTag().length() > 0) {
+				nota.setTag(nota.getTag());
+				tag.setName(nota.getTag());
+				HttpSession session = request.getSession();
+				tag.setUser((String)session.getAttribute( "username" ));
+			}
+			}
+			
+			DAO dao = new DAO();
+			try {
+				//if ((tag.getName() != null)&(!(dao.checkTag(tag))&&(tag.getName().length() > 0) )) {
+				if ((tag.getName() != null)) {
+					if(tag.getName().length() > 0) {
+						
+					
+					if(!(dao.checkTag(tag))){
+						System.out.println("Deu checkotag");
+						dao.adicionaTag(tag);
+					}
+					}
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println("Conectou cm o DAO");
+			try {
+				System.out.println("Tentou rodar o edit");
+				
+				dao.alteraNota(nota);
+				
+			} catch (SQLException e) {
+				System.out.println("Nem tentou rodar o edit");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "index";
+
+	
+	}
+	@RequestMapping("removeCard")
+	protected String service (Notas nota, HttpServletRequest request,
+			 HttpServletResponse response) throws IOException, ServletException {
+		
+			//int id =Integer.parseInt(request.getParameter("id"));
+			int id = nota.getId();
+			DAO dao = new DAO();
+			System.out.println("Conectou cm o DAO");
+			try {
+				System.out.println("Tentou rodar o remove");
+				dao.removeNota(id);
+			} catch (SQLException e) {
+				System.out.println("Nem tentou rodar o remove");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "index";
+			
+	}
+
+	}
 	
 
 

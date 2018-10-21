@@ -374,7 +374,7 @@ public class DAO {
 		try {
 			while (rs.next()) {
 				Tags tag = new Tags();
-				tag.setId(rs.getInt("id"));
+				tag.setTagId(rs.getInt("id"));
 				tag.setName(rs.getString("name"));
 				tag.setUser(rs.getString("user"));
 				tags.add(tag);
