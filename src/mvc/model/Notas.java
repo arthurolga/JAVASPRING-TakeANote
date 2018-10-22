@@ -10,8 +10,15 @@ public class Notas {
 	private String tag;
 	private String color;
 	private String time;
+	private String imglink;
 	
 	
+	public String getImglink() {
+		return imglink;
+	}
+	public void setImglink(String imglink) {
+		this.imglink = imglink;
+	}
 	public String getTag() {
 		return tag;
 	}

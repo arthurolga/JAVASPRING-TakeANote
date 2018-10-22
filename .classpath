@@ -16,13 +16,13 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/arthu/Documents/Insper/Tech Web/apache-maven-3.5.4/lib/maven-core-3.5.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/arthu/3D Objects/mysql-connector-java-8.0.12.jar"/>
+	<classpathentry kind="lib" path="/Users/lucasvaz/Desktop/apache-maven-3.5.4/lib/maven-core-3.5.4.jar"/>
+	<classpathentry kind="lib" path="/Users/lucasvaz/Desktop/mysql-connector-java-8.0.12/mysql-connector-java-8.0.12.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

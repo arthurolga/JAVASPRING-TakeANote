@@ -24,7 +24,7 @@ public class DAO {
 		}
 		try {
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://localhost/takeanote?useTimezone=true&serverTimezone=UTC","root","toyboy");
+					"jdbc:mysql://localhost/takeanote","root","");
 			System.out.println("DAO Conectado!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -208,6 +208,7 @@ public class DAO {
 				nota.setTag(rs.getString("tag"));
 				nota.setTime(rs.getString("time"));
 				nota.setColor(rs.getString("color"));
+				nota.setImglink(rs.getString("imglink"));
 				notas.add(nota);
 			}
 		} catch (SQLException e) {
@@ -246,6 +247,7 @@ public class DAO {
 				nota.setTag(rs.getString("tag"));
 				nota.setTime(rs.getString("time"));
 				nota.setColor(rs.getString("color"));
+				nota.setImglink(rs.getString("imglink"));
 				notas.add(nota);
 			}
 		} catch (SQLException e) {
@@ -291,6 +293,7 @@ public class DAO {
 				nota.setTag(rs.getString("tag"));
 				nota.setTime(rs.getString("time"));
 				nota.setColor(rs.getString("color"));
+				nota.setImglink(rs.getString("imglink"));
 				notas.add(nota);
 			}
 		} catch (SQLException e) {
@@ -332,7 +335,7 @@ public class DAO {
 		stmt.close();
 	}
 	public void alteraNota(Notas nota) throws SQLException {
-		String sql = "UPDATE notas SET "+"titulo=?, content=?, tag=?, time=? WHERE id=?";
+		String sql = "UPDATE notas SET "+"titulo=?, content=?, tag=?, time=?, imglink=? WHERE id=?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();
@@ -340,7 +343,8 @@ public class DAO {
 		stmt.setString(2, nota.getContent() );
 		stmt.setString(3, nota.getTag() );
 		stmt.setString(4, dtf.format(now));
-		stmt.setInt(5, nota.getId() );
+		stmt.setString(5, nota.getImglink());
+		stmt.setInt(6, nota.getId() );
 		stmt.execute();
 		stmt.close();
 	}

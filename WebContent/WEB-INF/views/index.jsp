@@ -97,7 +97,36 @@
 					</div>
 				</div>
 				
-				
+				 <% String music = (String)session.getAttribute( "music" );
+				 System.out.println(music);
+				 
+					
+				 if(music == null || music.equals("chilling")){ %>
+				 <p>Chilling<p>
+				<div data-track-id="Tra.329484030"  class="cover">
+  					<audio controls="" class="audio">
+    					<source src="http://listen.vo.llnwd.net/g3/9/3/0/7/3/1355337039.mp3" type="audio/mpeg">
+  					</audio>
+  				</div>
+				<%}else if(music.equals("rock")){%>
+				<p><%=music %><p>
+				<div data-track-id="Tra.329484030"  class="cover">
+  					<audio controls="" class="audio">
+    					<source src="http://listen.vo.llnwd.net/g3/4/6/9/1/3/1185531964.mp3" type="audio/mpeg">
+  					</audio>
+  				</div>
+				<% }else if(music.equals("rap")){%>
+				<p><%=music %><p>
+				<div data-track-id="Tra.329484030"  class="cover">
+  					<audio controls="" class="audio">
+    					<source src="http://listen.vo.llnwd.net/g3/8/9/7/2/1/1281612798.mp3" type="audio/mpeg">
+  					</audio>
+  				</div>
+  				<%} %>
+  				<a href="changeMusic?music=chilling">Chilling </a>
+  				<a href="changeMusic?music=rock"> Rock </a>
+  				<a href="changeMusic?music=rap"> Rap </a>
+  				
 				<p id="tags" class="light-blue-text"
 					style="margin-left: 2%; margin-bottom: 6%;">Tags</p>
 				<ul>
@@ -204,11 +233,12 @@
         
         
         for (Notas nota : notas ) { 
-        String tag = nota.getTag();%>
+        String tag = nota.getTag();
+        String imglink = nota.getImglink();%>
 				
 					<div class="col s12 m6 l3">
 						<div class="card large <%=nota.getColor() %> lighten-3 z-depth-2"
-							style="border-radius: 10px;">
+							style="border-radius: 10px;" >
 							
 							
 								
@@ -224,8 +254,18 @@
 								<div class="input-field col s12">
 									<textarea class="materialize-textarea" name="content" style=" border-bottom: none !important;"><%=nota.getContent()%></textarea>
 								</div>
+								
 							</div>
-							
+							<% if (imglink != null) {%>
+								<input type="hidden" name="imglink" value="<%=imglink%>">
+								<img style="max-height:70px;" src="<%=imglink %>">
+							<%}else{ %>
+							<div class="dropzone">
+							<input type="hidden" name="imglink" id="link<%=nota.getId() %>">
+							<input type="file" id="<%=nota.getId() %>" class="input" accept="image/*">
+        					</div>
+        					<br>
+							<%}%>
 							<% if (tag != null && tag.length() >1) {
 				%>
 							<input type="hidden" id="tag" name="tag"
@@ -294,6 +334,7 @@
 	<br>
 	<br>
 	</div>
+	
 	<!--
   <footer class="page-footer indigo lighten-1">
     <div class="container">
@@ -335,6 +376,8 @@
 	<!--  Scripts-->
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>
+	<script type="text/javascript" src="./js/imgur.js"></script>
+    <script type="text/javascript" src="./js/upload.js"></script>
 	<script src="js/init.js"></script>
 
 </body>

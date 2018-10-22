@@ -33,14 +33,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GeneralController {
 	@RequestMapping("index")
 	public String execute(HttpServletRequest request) {
-		System.out.println("Lógica do MVC");
+		System.out.println("Lï¿½gica do MVC");
 		HttpSession session = request.getSession();
 		session.setAttribute( "error", null );
 		return "index";
 	}
+	@RequestMapping("imgurteste")
+	public String imgurTeste(HttpServletRequest request) {
+		return "imgurteste";
+	}
 	@RequestMapping("login")
 	public String show(HttpServletRequest request) {
-		System.out.println("Lógica do MVC");
+		System.out.println("Lï¿½gica do MVC");
 		HttpSession session = request.getSession();
 		session.setAttribute( "error", null );
 		return "login";
@@ -392,9 +396,16 @@ public class GeneralController {
 			}
 			return "index";
 			
-	}  
-
-
+	} 
+	@RequestMapping("changeMusic")
+	protected String changeMusic (HttpServletRequest request,
+			 HttpServletResponse response) throws IOException, ServletException {
+		String music =request.getParameter("music");
+		HttpSession session = request.getSession();
+		System.out.println(music);
+		session.setAttribute( "music", music );
+		return "index";
+	}
 
 
 
