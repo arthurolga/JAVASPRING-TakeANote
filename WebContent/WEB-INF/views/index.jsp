@@ -62,6 +62,7 @@
 	<%
   String user = (String)session.getAttribute( "username" );
   DAO dao = new DAO();
+  String searchTag = (String)session.getAttribute( "searchTag" );
   if((user)== null){
   	RequestDispatcher RequetsDispatcherObj =request.getRequestDispatcher("login.jsp");
   	try{
@@ -86,7 +87,7 @@
 					<div class="col s12 ">
 						<div class="row" style="margin-bottom: -10px">
 							<div class="input-field col s12">
-								<form action="Search">
+								<form action="search" method="get">
 									<input type="text" name="search" id="autocomplete-input">
 									<label for="autocomplete-input"><i class="fa fa-search"
 										style="margin-right: 5px;"></i> Pesquisar</label>
@@ -110,7 +111,7 @@
         	for (Tags tag : tags ) { %>
 					<li>
 						<div class="col s7">
-							<a href="SearchTag?tag=<%=tag.getName() %>" class="grey-text"
+							<a href="searchTag?tag=<%=tag.getName() %>" class="grey-text"
 								style="margin-left: 5%"> <i
 								class="material-icons light-blue-text" style="margin-right: 5%">check_box_outline_blank</i>
 								<font size="4px" style="vertical-align: top;"><%=tag.getName() %></font>
@@ -180,18 +181,21 @@
 					<%= user %>
 				</h5>
 				<%List<Notas> notas = dao.getListaNotasUser(user);
-		        System.out.println(user);
+	        	System.out.println(searchTag);
 		        
 				if((String)request.getParameter("search") != null){
 		        	%>
-		        	<a style="font-size:20px; padding: 2%;" href="index.jsp" value="voltar">Back</a>
+		        	<a style="font-size:20px; padding: 2%;" href="index" value="voltar">Back</a>
 		        	<%
 		        	notas = dao.getListaNotasSearch(request.getParameter("search"),user);
-		        } else if((String)request.getParameter("searchTag") != null){
+		        	session.setAttribute( "searchTag", null );
+		        } else if(searchTag != null){
+		        	System.out.println(searchTag);
 		        	%>
-		        	<a style="font-size:20px; padding: 2%;" href="index.jsp" value="voltar">Back</a>
+		        	<a style="font-size:20px; padding: 2%;" href="index" value="voltar">Back</a>
 		        	<%
-		        	notas = dao.getListaNotasTags(request.getParameter("searchTag"), user);
+		        	session.setAttribute( "searchTag", null );
+		        	notas = dao.getListaNotasTags(searchTag, user);
 		        }
 				%>
 				<div class="col s12 cards-container" >
@@ -256,10 +260,10 @@
 				</div>
 				<div class="row">
 				
-					<a href="ChangeColor?id=<%=nota.getId() %>&color=red" style="margin:5px; margin-left:20px; max-width:15px; max-height:15px; border:0.1px; border-style: solid; border-color:black;" class="btn-floating btn-small waves-effect waves-light red lighten-2"></a>
-					<a href="ChangeColor?id=<%=nota.getId() %>&color=blue" style="margin:5px; max-width:15px; max-height:15px; border:0.1px; border-style: solid; border-color:black;" class="btn-floating btn-small waves-effect waves-light blue lighten-2"></a>
-					<a href="ChangeColor?id=<%=nota.getId() %>&color=yellow" style="margin:5px; max-width:15px; max-height:15px; border:0.1px; border-style: solid; border-color:black;" class="btn-floating btn-small waves-effect waves-light yellow lighten-2"></a>
-					<a href="ChangeColor?id=<%=nota.getId() %>&color=teal" style="margin:5px; max-width:15px; max-height:15px; border:0.1px; border-style: solid; border-color:black;" class="btn-floating btn-small waves-effect waves-light teal lighten-2"></a>
+					<a href="changeColor?id=<%=nota.getId() %>&color=red" style="margin:5px; margin-left:20px; max-width:15px; max-height:15px; border:0.1px; border-style: solid; border-color:black;" class="btn-floating btn-small waves-effect waves-light red lighten-2"></a>
+					<a href="changeColor?id=<%=nota.getId() %>&color=blue" style="margin:5px; max-width:15px; max-height:15px; border:0.1px; border-style: solid; border-color:black;" class="btn-floating btn-small waves-effect waves-light blue lighten-2"></a>
+					<a href="changeColor?id=<%=nota.getId() %>&color=yellow" style="margin:5px; max-width:15px; max-height:15px; border:0.1px; border-style: solid; border-color:black;" class="btn-floating btn-small waves-effect waves-light yellow lighten-2"></a>
+					<a href="changeColor?id=<%=nota.getId() %>&color=teal" style="margin:5px; max-width:15px; max-height:15px; border:0.1px; border-style: solid; border-color:black;" class="btn-floating btn-small waves-effect waves-light teal lighten-2"></a>
 				
 				</div>
 				</div>

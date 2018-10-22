@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
+
+
 @Controller
 @ControllerAdvice
 public class GeneralController {
@@ -351,6 +353,47 @@ public class GeneralController {
 		session.setAttribute( "error", error );
 		return "register";
 	}
+	@RequestMapping("search")
+	protected String search (HttpServletRequest request,
+			 HttpServletResponse response) throws IOException, ServletException {
+			String search =request.getParameter("search");
+			HttpSession session = request.getSession();
+			//String link = "/index.jsp?search=" + search;
+			session.setAttribute( "search", search );
+			return "index";
+	}
+	@RequestMapping("searchTag")
+	protected String searchTag (HttpServletRequest request,
+			 HttpServletResponse response) throws IOException, ServletException {
+			String search =request.getParameter("tag");
+			System.out.println(search);
+			System.out.println(search);
+			System.out.println(search);
+			HttpSession session = request.getSession();
+			session.setAttribute( "searchTag", search );
+			return "index";
+	}
+	@RequestMapping("changeColor")
+	protected String service (HttpServletRequest request,
+			 HttpServletResponse response) throws IOException, ServletException {
+		
+			String color = request.getParameter("color");
+			int id =Integer.parseInt(request.getParameter("id"));
+			
+			DAO dao = new DAO();
+			System.out.println("Conectou cm o DAO");
+			try {
+				System.out.println("Tentou rodar o remove");
+				dao.colorNota(id,color);
+			} catch (SQLException e) {
+				System.out.println("Nem tentou rodar o remove");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "index";
+			
+	}  
+
 
 
 
