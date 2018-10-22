@@ -6,7 +6,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>Starter Template - Materialize</title>
+  <title>Delete Account</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,9 +17,7 @@
 
 <body>
 <%@ page import="java.util.*,mvc.controller.*" %>
-<%@ taglib uri="http://www.springframework.org/tags/form"
-prefix="form" %>
-	<form action="fazerLogin" method="post">
+	<form action="removeUsuario" method="post" onsubmit="return confirm('Are you sure you want to DELETE this account?');">
 
   <nav>
     <div class="nav-wrapper light-blue accent-3 z-depth-2">
@@ -45,18 +43,18 @@ prefix="form" %>
     <div class="row">
       
       <div class="col s8 offset-s2 grey lighten-5 z-depth-1 " style="margin-top:-1%; padding-bottom:100%;" >
-      <% String error = (String)session.getAttribute( "error" ); 
+        <form class="col s12">
+          <div class="row">
+            <div>
+            <% String error = (String)session.getAttribute( "error" ); 
             if(error != null){ %>
             <br>
     		<h5 class="center-align" style="color:red;"> <%=error %></h5>
     
     
-    	<%} %>
-        <form class="col s12">
-          <div class="row">
-            <div>
+    		<%} %>
                 <br>
-                <h4 class="center-align" >Login</h4>
+                <h4 class="center-align" >Delete Account</h4>
             </div>  
           </div>
           
@@ -77,7 +75,7 @@ prefix="form" %>
         </div>
       <div class="row">
         <div class="center-align">
-          <input type="submit" value='Submit'>
+          <input type="submit" class="waves-effect waves-light btn" value='Submit'></input>
         </div>
       </div>
         

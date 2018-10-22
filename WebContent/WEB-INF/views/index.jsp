@@ -48,13 +48,13 @@
 	<%@ page import="java.util.*,mvc.model.*"%>
 	<nav>
 		<div class="nav-wrapper light-blue accent-3 z-depth-2">
-			<a href="index.jsp" class="brand-logo hide-on-med-and-down"
-				style="margin-left: 3%">Take-a-Note!</a> <a href="index.jsp"
+			<a href="index" class="brand-logo hide-on-med-and-down"
+				style="margin-left: 3%">Take-a-Note!</a> <a href="index"
 				class="brand-logo hide-on-large-only">Take-a-Note!</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="login">Login</a></li>
-				<li><a href="login">Change Password</a></li>
-				<li><a href="deleteThis.jsp">Delete User</a></li>
+				<li><a href="editAccount">Change Password</a></li>
+				<li><a href="deleteAccount">Delete User</a></li>
 			</ul>
 		</div>
 
@@ -117,7 +117,7 @@
 							</a>
 						</div>
 						<div class="col s1">
-							<a href="DeleteTag?id=<%=tag.getId()%>"><i
+							<a href="removeTag?id=<%=tag.getId()%>"><i
 								class="material-icons grey-text">close</i></a>
 						</div>
 					</li>
