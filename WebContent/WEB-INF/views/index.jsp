@@ -66,7 +66,7 @@
   if((user)== null){
   	RequestDispatcher RequetsDispatcherObj =request.getRequestDispatcher("login.jsp");
   	try{
-  	RequetsDispatcherObj.forward(request, response); 
+  	RequetsDispatcherObj.forward(request, response);
   	} catch (ServletException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

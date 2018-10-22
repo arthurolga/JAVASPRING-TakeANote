@@ -28,7 +28,7 @@
           <a href="login">Login</a>
         </li>
         <li>
-          <a href="register">Sign Up</a>
+          <a href="createAccount">Sign Up</a>
         </li>
       </ul>
     </div>
